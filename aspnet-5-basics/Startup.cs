@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace aspnet_5_basics
+namespace aspnet5basics
 {
     public class Startup
     {
-        
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IMyDependency, MyDependency>();
+            services.AddRazorPages().WithRazorPagesRoot("/Pages");;
         }
-        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -20,9 +20,11 @@ namespace aspnet_5_basics
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync("Hello ASP.NET 5!");
+                endpoints.MapRazorPages();
             });
         }
     }

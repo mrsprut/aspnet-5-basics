@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace aspnet_5_basics
+namespace aspnet5basics
 {
     using Host = Microsoft.Extensions.Hosting.Host;
     class Program
@@ -17,7 +17,7 @@ namespace aspnet_5_basics
                 {
                     webBuilder.ConfigureKestrel(serverOptions =>
                         {
-                            // Set properties and call methods on options
+                            serverOptions.ListenLocalhost(8080);
                         })
                         .UseStartup<Startup>();
                 });

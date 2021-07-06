@@ -20,6 +20,8 @@ namespace aspnet5basics
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            app.UseMiddleware<OrderRoutingMiddleware>();
 
             app.UseRouting();
 
